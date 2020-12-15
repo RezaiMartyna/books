@@ -1,4 +1,4 @@
-
+{
 
 templateBook = Handlebars.compile(document.querySelector('#template-book').innerHTML),
 console.log('temple', templateBook)
@@ -22,6 +22,6 @@ function render() {
 }
 function render();
 
-
+}
 
 
