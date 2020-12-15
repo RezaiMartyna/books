@@ -11,13 +11,13 @@ console.log('list', listBookHtml)
 function render() {
   for (const element in dataSource.books) {
     /*generate HTML based on template */
-    const generatedHTML = templateBook(data);
+    const generatedHTML = templateBook(element);
     /*create element using utils.creteElementFromHTML */
     elementhtml = utils.createDOMFromHTML(generatedHTML);
     /*find menu container*/
     const menuContainer = listBookHtml
     /*add element to menu*/
-    elementhtml.appendChild(element);
+    menuContainer.appendChild(elementhtml);
   }
 }
 function render();
