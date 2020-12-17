@@ -23,38 +23,39 @@ const favoriteBooks = [];
 
 function initActions() {
 
-  //Lista obrazów w liście ksiązek w html
-  const ListOfPictures = listBookHtml.querySelectorAll('.book__image');
+  //nasłuchuj na lisćie z ksiązkami  podwójnego kliknięcia
+  listBookHtml.addEventListener('dblclick', function (event) {
+    //zablokuj domyślną funkcję przeglądarki
+    event.preventDefault();
+    //ustaw klikniety element= na (event.target=kliknięty element) (offsetParent=rodzic elementu)
+    const clickedElement = event.target.offsetParent;
 
-  for (const picture of ListOfPictures) {
-    //nasłuchuj na każdym zdjęciu podwójnego kliknięcia
-    picture.addEventListener('dblclick', function(event){
-      //zablokuj domyślną funkcję przeglądarki
-      event.preventDefault();
+    //jeżeli kliknięcie nastąpiło na obrazku
+    if (clickedElement.classList.contains('book__image')) {
 
       // jeżeli zdjęcie ma klasę 'favorite'
-      if (picture.classList.contains('favorite')){
+      if (clickedElement.classList.contains('favorite')) {
         //weź atrybut z obrazka przypisana w 'data-id'
-        const bookId = picture.getAttribute('data-id');
+        const bookId = clickedElement.getAttribute('data-id');
         //znajdz index pod którym znajduje się atrybut
-        const indexOfBookID = favoriteBooks.indexOf(bookId[ fromIndex = 0]);
+        const indexOfBookID = favoriteBooks.indexOf(bookId);
         // usunać ten element z tablicy
         favoriteBooks.splice(indexOfBookID, 1);
         //usuń klase favorite z obrazka
-        picture.classList.remove('favorite');
+        clickedElement.classList.remove('favorite');
 
         //jeżeli inaczej
       } else {
         //dodaj klase favorite do obrazka
-        picture.classList.add('favorite');
+        clickedElement.classList.add('favorite');
         //weź atrybut z obrazka przypisana w 'data-id'
-        const bookId = picture.getAttribute('data-id');
+        const bookId = clickedElement.getAttribute('data-id');
         //dodaj ten element do tablicy
         favoriteBooks.push(bookId);
-      };
-    });
-  };
-};
+      }
+    }
+  });
+}
 //wywołaj funkcje
 initActions();
 
