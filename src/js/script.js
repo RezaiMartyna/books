@@ -64,18 +64,21 @@ function initActions() {
     const clickedElement = event.target;
 
     if (clickedElement.tagName === 'INPUT' && clickedElement.type === 'checkbox' && clickedElement.name === 'filter') {
-      const check = document.querySelector('INPUT').checked;
-      if (check == true) {
-        const value = clickedElement.getAttribute('value');
-        filters.push(value);
-      }
-      else {
-        const value = clickedElement.getAttribute('value');
-        const indexOfFilterID = filters.indexOf(value);
-        filters.splice(indexOfFilterID, 1);
-      }
 
-    };
+      const input = document.querySelectorAll('input[name=filter]');
+      for (const inp of input) {
+        if (inp.checked) {
+          const value = inp.getAttribute('value');
+          filters.push(value);
+          console.log(filters, 'dodaj')
+        } else {
+          const value = inp.getAttribute('value');
+          const indexOfFilterID = filters.indexOf(value);
+          filters.splice(indexOfFilterID, 1);
+          console.log(filters, 'usuń')
+        }
+      }
+    }
     console.log(filters);
   });
 }
