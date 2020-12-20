@@ -21,6 +21,10 @@ render();
 
 const favoriteBooks = [];
 
+const filters = [];
+
+const buttonFilters = document.querySelector('.filters');
+
 function initActions() {
 
   //nasłuchuj na lisćie z ksiązkami  podwójnego kliknięcia
@@ -55,7 +59,27 @@ function initActions() {
       }
     }
   });
+
+  buttonFilters.addEventListener('click', function (event) {
+    const clickedElement = event.target;
+
+    if (clickedElement.tagName === 'INPUT' && clickedElement.type === 'checkbox' && clickedElement.name === 'filter') {
+      const check = document.querySelector('INPUT').checked;
+      if (check == true) {
+        const value = clickedElement.getAttribute('value');
+        filters.push(value);
+      }
+      else {
+        const value = clickedElement.getAttribute('value');
+        const indexOfFilterID = filters.indexOf(value);
+        filters.splice(indexOfFilterID, 1);
+      }
+
+    };
+    console.log(filters);
+  });
 }
 //wywołaj funkcje
 initActions();
+
 
