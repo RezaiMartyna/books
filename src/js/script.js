@@ -128,6 +128,7 @@ function determineRatingBgc(rating) {
 determineRatingBgc();
 
 function determineratingWidth(rating) {
+  let Width = '';
   if (rating > 1) {
     Width = 10;
   }
